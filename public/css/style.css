@@ -2,7 +2,7 @@
     width: 5vw;
     min-width: 55px;
 }
-.cat-container img{
+.cat-container img, .pro-container img{
 
     border: 1px solid #e2e2e2;
     padding: 20px;
