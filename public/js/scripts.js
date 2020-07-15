@@ -22,16 +22,26 @@ $(document).ready(function () {
         e.preventDefault(e);
         var that = $(this);
         var url = that.attr('href');
-        
+
         $.ajax({
             url: url,
             method: 'get',
             success: function (response) {
-                if (Number(response)){
+                if (Number(response)) {
                     $('#mini-cart span').text(response);
+                    $("#alert").slideDown().removeClass().addClass('alert alert-success').text('The product was added successfully');
+                } else {
+                    $("#alert").slideDown().removeClass().addClass('alert alert-success').text('The action could not be copmlated')
                 }
             }
-            
+
+        }).fail(function () {
+            $("#alert").slideDown().removeClass().addClass('alert alert-danger').text('');
+        }).always(function () {
+            window.setTimeout(function () {
+                $("#alert").slideUp();
+            }, 3000);
+
         });
     });
 

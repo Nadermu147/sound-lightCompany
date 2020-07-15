@@ -66,6 +66,8 @@
         <main>
 
             <div class="container">
+                <div id='alert'></div>
+             
                 <div class="container">
                     @yield('content')
                 </div>
