@@ -28,3 +28,5 @@ Route::view('about', 'pages.about');
 //Route::view('shop', 'shop.shop');
 Route::get('shop', 'ShopController@displayShop');
 Route::get('shop/{categorey}', 'shopController@displayCategory');
+Route::get('shop/{categorey}/{product}', 'shopController@displayProduct');
+Route::get('add-to-cart/{product_id}', 'CartController@addToCart');

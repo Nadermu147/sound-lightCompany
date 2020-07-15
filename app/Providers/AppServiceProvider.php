@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Support\Facades\View;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+          // Using Closure based composers...
+        View::composer('*', function ($view) {
+           $view->with('cart_count',\Cart::count());
+        });
     }
 }
