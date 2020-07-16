@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Providers;
-use Illuminate\Support\Facades\View;
+
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
           // Using Closure based composers...
         View::composer('*', function ($view) {
-           $view->with('cart_count',\Cart::count());
+            $view->with('cart_count', \Cart::count());
         });
     }
 }

@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
 
     $('a.add-to-cart').on('click', function (e) {
-        e.preventDefault(e);
+        e.preventDefault();
         var that = $(this);
         var url = that.attr('href');
 
@@ -45,4 +45,25 @@ $(document).ready(function () {
         });
     });
 
+    $('#add-to-car').on('submit', function (e) {
+         e.preventDefault(e);
+        var that = $(this),
+                url = that.attr('action'),
+                data = that.serialize();
+        $.post(url, data, function (response) {
+            if (Number(response)) {
+                $('#mini-cart span').text(response);
+                $("#alert").slideDown().removeClass().addClass('alert alert-success').text('The product was added successfully');
+            } else {
+                $("#alert").slideDown().removeClass().addClass('alert alert-success').text('The action could not be copmlated')
+            }
+
+        }).fail(function () {
+            $("#alert").slideDown().removeClass().addClass('alert alert-danger').text('');
+
+        }).always(function () {});
+        window.setTimeout(function () {
+            $("#alert").slideUp();
+        }, 3000);
+    });
 });
