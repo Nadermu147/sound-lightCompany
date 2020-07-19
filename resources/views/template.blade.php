@@ -52,11 +52,14 @@
                                 <a class="nav-link" href="#">Login</a>
                             </li>
                         </ul>
-                        <div id='mini-cart'>
+                        <div id='mini-cart'class="cart">
+                            <a class="text secondary"href=" {{url('cart')}}">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                            </svg>
+                              </svg>
+                           
                             <span>{{$cart_count ? : ''}}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -67,20 +70,18 @@
 
             <div class="container">
                 <div id='alert'></div>
-             
-                <div class="container">
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
-        </main>
-        <footer class="bg-light">
-            <div class="container text-center p-5">  @Develpoer by Nader Muhesen 2020</div>
+    
+    </main>
+    <footer class="bg-light">
+        <div class="container text-center p-5">  @Develpoer by Nader Muhesen 2020</div>
 
-        </footer>
+    </footer>
 
-        <script src="{{asset("js/jquery-3.5.1.min.js")}}"></script>
-        <script src="{{asset("js/scripts.js")}}"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{{asset("js/jquery-3.5.1.min.js")}}"></script>
+    <script src="{{asset("js/scripts.js")}}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-    </body>
+</body>
 </html>

@@ -15,4 +15,10 @@ class CartController extends Controller {
        Product::addToCart($id);
        return \Cart::count();
    }
-}
+  
+    public function displayCart(){
+     
+       return view ('cart.cart');
+   }
+   
+ }
