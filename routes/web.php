@@ -32,3 +32,6 @@ Route::get('shop/{categorey}/{product}', 'shopController@displayProduct');
 Route::get('add-to-cart/{product_id}', 'CartController@addToCart');
 Route::post('add-to-cart', 'CartController@addToCartByQty');
 Route::get('cart', 'CartController@displayCart');
+Route::post('update-cart', 'CartController@updateCart');
+Route::get('delet-item/{rowId}','CartController@deletItem');
+Route::get('delete-cart','CartController@deletCart');
