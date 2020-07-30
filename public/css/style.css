@@ -31,7 +31,7 @@ span {cursor:pointer; }
     text-align: center;
     box-sizing: content-box;
 }
-input{
+.number input{
     height:34px;
     width: 100px;
     text-align: center;

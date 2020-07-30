@@ -35,3 +35,6 @@ Route::get('cart', 'CartController@displayCart');
 Route::post('update-cart', 'CartController@updateCart');
 Route::get('delet-item/{rowId}','CartController@deletItem');
 Route::get('delete-cart','CartController@deletCart');
+Route::get('signup','UserController@DisplaySignup');
+Route::post('signup', 'UserController@processSignup');
+Route::view('login', 'user.login');

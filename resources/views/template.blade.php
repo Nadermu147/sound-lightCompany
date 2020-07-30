@@ -46,7 +46,7 @@
                         </ul>
                         <ul class="navbar-nav ml-auto"> 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Sign up</a>
+                                <a class="nav-link" href="{{url('signup')}}">Sign up</a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="#">Login</a>
@@ -73,6 +73,16 @@
                 @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
+                </div>
+                @endif
+                @if ($errors->any())
+             
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
                 @endif
                 @yield('content')
