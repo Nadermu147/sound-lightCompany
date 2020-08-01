@@ -29,12 +29,18 @@ Route::view('about', 'pages.about');
 Route::get('shop', 'ShopController@displayShop');
 Route::get('shop/{categorey}', 'shopController@displayCategory');
 Route::get('shop/{categorey}/{product}', 'shopController@displayProduct');
+
 Route::get('add-to-cart/{product_id}', 'CartController@addToCart');
 Route::post('add-to-cart', 'CartController@addToCartByQty');
 Route::get('cart', 'CartController@displayCart');
 Route::post('update-cart', 'CartController@updateCart');
 Route::get('delet-item/{rowId}','CartController@deletItem');
 Route::get('delete-cart','CartController@deletCart');
+
 Route::get('signup','UserController@DisplaySignup');
 Route::post('signup', 'UserController@processSignup');
-Route::view('login', 'user.login');
+
+ Route::get('login', 'UserController@displayLogin');
+ Route::post('login', 'UserController@processLogin');
+ 
+ Route::get('logout','UserController@logout');
