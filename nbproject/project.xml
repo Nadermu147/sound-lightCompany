@@ -7,6 +7,8 @@
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>csrf</word>
+            <word>elsde</word>
+            <word>foreach</word>
             <word>LoginPage</word>
             <word>scrf</word>
         </spellchecker-wordlist>

@@ -44,3 +44,11 @@ Route::post('signup', 'UserController@processSignup');
  Route::post('login', 'UserController@processLogin');
  
  Route::get('logout','UserController@logout');
+ 
+ 
+ Route::get('place-order','CartController@placeOrder');
+ 
+ Route::get('admin','AdminController@displayDashboard')->middleware('validate_admin');
+ Route::get('admin/orders','AdminController@displayOrders')->middleware('validate_admin');
+ 
+ Route::resource('admin/categories', 'CategryCrudController')->middleware('validate_admin');

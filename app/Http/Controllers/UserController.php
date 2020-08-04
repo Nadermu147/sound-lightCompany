@@ -21,6 +21,10 @@ class UserController extends Controller
     
     public function processLogin (UserLogin $request){
         if(User::loginUser($request)){
+            if(session('place-order-process')){
+                $request->session()->forget('place-order-process'); 
+                return redirect('place-order');
+            }
             return redirect('shop')->with('status', 'Welcom' . ucfirst(session('name')) . ' enjoy your shopping');
           }
         return redirect('login')->with('status-fail', 'Wrong mail or password');
