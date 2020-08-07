@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Requests\CategoryHandler;
+use App\Http\Requests\CategoryEdit;
 
-class CategryCrudController extends Controller
-{
+class CategryCrudController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $data['categories'] = Category::getCategories();
-        return view ('admin.category.list', $data);
+        return view('admin.category.list', $data);
     }
 
     /**
@@ -23,9 +24,8 @@ class CategryCrudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('admin.category.add');
     }
 
     /**
@@ -34,9 +34,11 @@ class CategryCrudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CategoryHandler $request) {
+
+        Category::store($request);
+
+        return redirect('admin/categor')->with('status', 'The category was added seccess.');
     }
 
     /**
@@ -45,8 +47,7 @@ class CategryCrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -56,9 +57,9 @@ class CategryCrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $data['category'] = Category::getCategoryById($id);
+        return view('admin.category.edit', $data);
     }
 
     /**
@@ -68,9 +69,10 @@ class CategryCrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(CategoryEdit $request, $id) {
+        Category::updateCategory($id, $request);
+        
+        return redirect('admin/categories')->with('status', 'the category wase updated sucessfully ');
     }
 
     /**
@@ -79,8 +81,8 @@ class CategryCrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

@@ -19,7 +19,7 @@
             @foreach($categories as $category)
             <tr>
                 <th scope="row">
-                    <img class="admin-thumbnail" src="{{asset('images/categories/' . $category->image)}}" alt="{{$category -> name}}">
+                    <img class="admin-thumbnail" src="{{asset('storage/' . $category->image)}}" alt="{{$category -> name}}">
                 </th>
                 <td class="align-middle">{{$category->name}}</td>
                 <td  class="align-middle">{{$category -> slug}}</td>

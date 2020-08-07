@@ -12,7 +12,8 @@
     <div class="col-md-4 mb-5">
         <div class="cat-container">
             <h3>{{strtoupper($categorey->name)}}</h3>
-            <a class="stretched-link"href='{{url('shop/' . $categorey->slug)}}'><img src="{{asset('images/categories/' . $categorey->image)}}"></a>
+            <a class="stretched-link"href='{{url('shop/' . $categorey->slug)}}'>
+                <img src="{{asset('storage/' . $categorey->image)}}"></a>
         </div>
 
     </div>
