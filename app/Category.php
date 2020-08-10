@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+
 class Category extends Model {
 
     public function products() {
@@ -28,25 +29,31 @@ class Category extends Model {
         $category->image = $request->image->store('images/categories', 'public');
         $category->save();
     }
-    public static function getCategoryById($id){
+
+    public static function getCategoryById($id) {
         return self::findOrFail($id);
     }
+
     protected function parseCasterClass($class): string {
         parent::parseCasterClass($class);
     }
-    public static function updateCategory ($id, $request){
+
+    public static function updateCategory($id, $request) {
         $category = self::findOrFail($id);
         $category->name = $request->name;
         $category->slug = $request->slug;
-        
-        if ($request->image){
+
+        if ($request->image) {
             Storage::disk('public')->delete($category->image);
-            $category->image = $request->image->store('images/categories', 'public'); 
+            $category->image = $request->image->store('images/categories', 'public');
         }
         $category->save();
-        
-        
-        
-        
     }
+
+    public static function deleteCategory($id) {
+      $category = self::findOrFail($id) ;
+      Storage::disk('public')->delete('$category->image');
+      self::destroy($id);
+    }
+
 }

@@ -133,7 +133,15 @@ $(function () {
         
     });
     
-    
+    $('.open-modal').on('click', function(){
+        var that= $(this),
+        id = that.data('id');
+        var form = $('#delete-form'),
+         name = that.data('name'),
+         route = form.data('route');
+        form.attr('action', route + '/' + id);
+        $('#confirmModal .modal-body').text('Are you sure that you want to delete '  + name);
+    });
 });
 function debounce(func, wait, immediate) {
 	var timeout;
