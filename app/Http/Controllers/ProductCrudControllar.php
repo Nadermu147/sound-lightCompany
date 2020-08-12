@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Category;
 use Illuminate\Http\Request;
+use App\Product;
+use App\Http\Requests\ProductHandler;
 
-class ProductController extends Controller
+class ProductCrudControllar extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data['products'] = Product::getAll();
+       return view('admin.products.list', $data);
+       
     }
 
     /**
@@ -23,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+       $data['categories'] = Category::getCategories();
+       return view('admin.products.add', $data );
     }
 
     /**
@@ -32,9 +37,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductHandler $request)
     {
-        //
+        Product::store($request);
+        return redirect('admin/product')->with('status', 'the product was add successfully.');
     }
 
     /**

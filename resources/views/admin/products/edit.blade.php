@@ -6,7 +6,7 @@
     @method('PUT')
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" class="form-control" id="name"name="{{$category->name}}" value="{{$category->name}}">
+        <input type="text" name="name" class="form-control" id="name"{{$category->slug}}>
     </div>
     <div class="form-group">
         <label for="slug">Slug</label>

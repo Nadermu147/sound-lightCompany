@@ -18,7 +18,7 @@ class CategoryHandler extends FormRequest
         return [
              'name' => 'required|min:2|regex:/^[\d\w -]+$/',
              'slug' => 'required|min:2|alpha_dash|unique:categories,slug',
-             'image' => 'required|image'
+             'image' => 'required|image',
              
         ];
     }

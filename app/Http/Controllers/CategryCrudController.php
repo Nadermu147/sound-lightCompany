@@ -38,7 +38,7 @@ class CategryCrudController extends Controller {
 
         Category::store($request);
 
-        return redirect('admin/categor')->with('status', 'The category was added seccess.');
+        return redirect('admin/categories')->with('status', 'The category was added seccess.');
     }
 
     /**

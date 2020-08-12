@@ -14,7 +14,7 @@
 
 
     <div class="form-group">
-        <label for="image">Example file input</label>
+        <label for="image">Add category image</label>
         <input type="file" class="form-control-file" id="image"name="image">
     </div>
 

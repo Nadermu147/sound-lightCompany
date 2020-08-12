@@ -23,7 +23,7 @@ class Category extends Model {
     }
 
     public static function store($request) {
-        $category = new self();
+        $category       = new self();
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->image = $request->image->store('images/categories', 'public');
@@ -34,9 +34,9 @@ class Category extends Model {
         return self::findOrFail($id);
     }
 
-    protected function parseCasterClass($class): string {
-        parent::parseCasterClass($class);
-    }
+//    protected function parseCasterClass($class): string {
+//        parent::parseCasterClass($class);
+//    }
 
     public static function updateCategory($id, $request) {
         $category = self::findOrFail($id);
