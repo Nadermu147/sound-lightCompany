@@ -5,7 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model {
-
+     
+    public static function getProductById($id) {
+        return self::findOrFail($id);
+    }
     public static function store($request) { 
         $product = new self();
         $product->name        = $request->name;

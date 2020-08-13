@@ -62,7 +62,9 @@ class ProductCrudControllar extends Controller
      */
     public function edit($id)
     {
-        //
+               $data['categories'] = Category::getCategories();
+               $data['product'] = Product::getProductById($id);
+              return view('admin.products.edit', $data);
     }
 
     /**
