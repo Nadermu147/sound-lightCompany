@@ -53,3 +53,4 @@ Route::post('signup', 'UserController@processSignup');
  
  Route::resource('admin/categories', 'CategryCrudController')->middleware('validate_admin');
  Route::resource('admin/products', 'ProductCrudControllar')->middleware('validate_admin');
+ Route::resource('admin/users', 'UserCrudController')->middleware('validate_admin');
