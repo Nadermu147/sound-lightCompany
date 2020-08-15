@@ -15,7 +15,7 @@
     <div class="col-md-4 mb-5">
         <div class="pro-container">
             <h3>{{strtoupper($product->name)}}</h3>
-            <a class="" href='{{url('shop/' . $category->slug). '/' . $product->slug}}'><img class="img1" src="{{asset('images/product/' . $product->image)}}"></a>
+            <a class="" href='{{url('shop/' . $category->slug). '/' . $product->slug}}'><img class="img1" src="{{asset('storage/' . $product->image)}}"></a>
             <h4>&#8362;{{$product->price}}</h4>
             <a href="{{url('add-to-cart/'. $product->id)}}" class="add-to-cart btn btn-primary">Add To Cart</a>
             <a   class="btn btn-info"href="{{url()->current(). '/' . $product->slug}}">Read More</a>

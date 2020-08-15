@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
+
 class Category extends Model {
 
     public function products() {
@@ -53,6 +54,10 @@ class Category extends Model {
     public static function deleteCategory($id) {
       $category = self::findOrFail($id) ;
       Storage::disk('public')->delete('$category->image');
+      $products = $category->products;
+      foreach ($products as $product){
+          Product::deleteProduct($product->id);
+      }
       self::destroy($id);
     }
 

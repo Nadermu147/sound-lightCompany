@@ -13,7 +13,8 @@
         <div class="cat-container">
             <h3>{{strtoupper($categorey->name)}}</h3>
             <a class="stretched-link"href='{{url('shop/' . $categorey->slug)}}'>
-                <img src="{{asset('storage/' . $categorey->image)}}"></a>
+                <img src="{{asset('storage/' . $categorey->image)}}">
+            </a>
         </div>
 
     </div>

@@ -3,20 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Storage;
 class Product extends Model {
-     
+
     public static function getProductById($id) {
         return self::findOrFail($id);
     }
-    public static function store($request) { 
+
+    public static function store($request) {
         $product = new self();
-        $product->name        = $request->name;
-        $product->slug        = $request->slug;
-        $product->price       = $request->price;
+        $product->name = $request->name;
+        $product->slug = $request->slug;
+        $product->price = $request->price;
         $product->description = $request->description;
         $product->category_id = $request->category;
-        $product->image       = $request->image->store('images/products', 'public');
+        $product->image = $request->image->store('images/products', 'public');
         $product->save();
     }
 
@@ -50,4 +51,24 @@ class Product extends Model {
         return self::orderBy('slug')->get();
     }
 
+    public static function editProduct($request) {
+
+        $product = self::findOrFail($request->product);
+
+        $product->name = $request->name;
+        $product->slug = $request->slug;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->category_id = $request->category;
+        if($request->image){
+            Storage::disk('public')->delete($product->image);
+        $product->image = $request->image->store('images/products', 'public');
+        }
+        $product->save();
+    }
+    public static function deleteProduct($id) {
+        $product = self::findOrFail($id);
+        Storage::disk('public')->delete($product->image);
+        self::destroy($id); 
+    }
 }

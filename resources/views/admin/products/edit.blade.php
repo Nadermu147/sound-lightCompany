@@ -3,7 +3,7 @@
 <h1>Edit Product</h1>
 
 
-<form class="clearfix"action="{{url('admin/product/' . $product->id)}}"method="post" enctype="multipart/form-data">
+<form class="clearfix"action="{{url('admin/products/' . $product->id)}}"method="post" enctype="multipart/form-data">
     @csrf 
    
      @method('PUT')

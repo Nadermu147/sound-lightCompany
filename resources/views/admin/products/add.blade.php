@@ -5,7 +5,7 @@
 <h2>In order to create product, please <a href="{{url('admin/categories/create')}}"> create at least category</a></h2>
 @else
 
-<form class="clearfix"action="{{url('admin/product')}}"method="post" enctype="multipart/form-data">
+<form class="clearfix"action="{{url('admin/products')}}"method="post" enctype="multipart/form-data">
     @csrf 
    
 
