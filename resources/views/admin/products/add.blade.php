@@ -1,3 +1,4 @@
+
 @extends('admin.template')
 @section('admin-content')
 <h1>Add new Product</h1>
@@ -37,14 +38,10 @@
         <label for="description">Description</label>
         <textarea class="form-control"id="description"name="description"">{{old('description')}}</textarea>
     </div>
-
-
-
     <div class="form-group">
         <label for="image">Product image</label>
         <input type="file" class="form-control-file" id="image"name="image">
     </div>
-
     <button type="submit" class="btn btn-primary float-right">Submit</button>
 </form>
 @endif

@@ -26,7 +26,7 @@ class CategoryEdit extends FormRequest
         $id = request()->Category;
          return [
              'name' => 'required|min:2|regex:/^[\d\w -]+$/',
-             'slug' => 'required|min:2|alpha_dash|unique:categories,slug' . $id,
+             'slug' => 'required|min:2|alpha_dash|unique:categories,slug,' . $id,
              'image' => 'image'
              
         ]; 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -29,17 +30,27 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('about')}}">About</a>
                             </li>
+                            
+                              @unless( $pages->isEmpty())
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Articals
+                                    pages
                                 </a>
+
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    @foreach($pages as $page)
+                                    <a class="dropdown-item" href="{{url($page->slug)}}">{{($page->name)}}</a> 
+                                      @endforeach
                                 </div>
+                              
                             </li>
+                            @endunless
+                            
+                          
+                            
+                            
+                            
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('shop')}}">Shop</a>
                             </li>
@@ -47,11 +58,11 @@
                         <ul class="navbar-nav ml-auto"> 
                             @if(session('id'))
                             @if(session('role')===17)
-                              <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link font-weigh-bold" href="{{url('admin ')}}">Dashboard</a>
                             </li>
                             @endif
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{url('logout ')}}">{{ucfirst(session('name'))}},Logout</a>
                             </li>
                             @else
@@ -86,14 +97,14 @@
                     {!! session('status') !!}
                 </div>
                 @endif
-              
+
                 @if (session('status-fail'))
                 <div class="alert alert-danger">
                     {{ session('status-fail') }}
                 </div>
                 @endif
                 @if ($errors->any())
-             
+
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -110,10 +121,14 @@
             <div class="container text-center p-5">  @Develpoer by Nader Muhesen 2020</div>
 
         </footer>
-
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+						
         <script src="{{asset("js/jquery-3.5.1.min.js")}}"></script>
         <script src="{{asset("js/scripts.js")}}"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
     </body>
 </html>
+
+
