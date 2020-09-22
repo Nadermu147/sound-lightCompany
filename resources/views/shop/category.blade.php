@@ -8,8 +8,17 @@
 
 @endif
 
+
+<a href="{{ url()->current()}}?sort=DESC" style="color:black"> High to low</a>
+<a href="{{ url()->current()}}?sort=ASC" style="color:black">Low to high</a>
+@if(!isset($_GET['sort'])){
+
+    $_GET['sort'] = "DESC";
+}
+$_GET["sort"] == "DESC" ? $g1 = $category->product->('price') : $g1 = $category->products;
+@endif
 <div class="row">
-   
+
     @foreach($category->products as $product)
 
     <div class="col-md-4 mb-5">
@@ -18,7 +27,7 @@
             <a class="" href='{{url('shop/' . $category->slug). '/' . $product->slug}}'><img class="img1" src="{{asset('storage/' . $product->image)}}"></a>
             <h4>&#8362;{{$product->price}}</h4>
             <a href="{{url('add-to-cart/'. $product->id)}}" class="add-to-cart btn btn-primary">Add To Cart</a>
-            <a   class="btn btn-info"href="{{url()->current(). '/' . $product->slug}}">Read More</a>
+            <a   class="btn btn-info"href="{{url()->current() . '/' . $product->slug}}">Read More</a>
         </div>
 
     </div>
@@ -26,4 +35,5 @@
     @endforeach
 
 </div>
+
 @endsection

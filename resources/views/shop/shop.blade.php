@@ -3,6 +3,9 @@
 <h1 class="mb-5">Shop page</h1>
 
 
+
+
+
 <div class="row">
     @if($categories->isEmpty())
     <h2>We dont have anythink to offer.</h2>

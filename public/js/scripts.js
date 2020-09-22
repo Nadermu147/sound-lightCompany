@@ -1,11 +1,16 @@
 'use strict';
 
+var perfEntries = performance.getEntriesByType("navigation");
+
+if (perfEntries[0].type === "back_forward") {
+    location.reload(true);
+}
 
 $(function () {
     ///////////////////////
     $('.minus').click(function () {
         var $input = $(this).parent().find('input');
-        if($input.val()<=1){
+        if ($input.val() <= 1) {
             return false;
         }
         var count = parseInt($input.val()) - 1;
@@ -101,7 +106,7 @@ $(function () {
                 parent = that.parents('.update-cart'),
                 url = parent.attr('action'),
                 data = parent.serialize();
-             
+
         $.post(url, data, function (response) {
             // JSON.parse(response);
 
@@ -115,45 +120,48 @@ $(function () {
                 $("#alert").slideDown().removeClass().addClass('alert alert-success').text('The action could not be copmlated');
             }
 
-        },'json').fail(function () {
+        }, 'json').fail(function () {
             $("#alert").slideDown().removeClass().addClass('alert alert-danger').text('the action could not complated');
         }).always(function () {
             window.setTimeout(function () {
                 $("#alert").slideUp();
             }, 3000);
         });
-    },500));
-    
+    }, 500));
+
     $('a.delete-product').on('click', function () {
-        return confirm ('Are sure you want to delet this product');
-        
+        return confirm('Are sure you want to delet this product');
+
     });
     $('a.delete-cart').on('click', function () {
-        return confirm ('Are sure do  you want to delet cart content');
-        
+        return confirm('Are sure do  you want to delet cart content');
+
     });
-    
-    $('.open-modal').on('click', function(){
-        var that= $(this),
-        id = that.data('id');
+
+    $('.open-modal').on('click', function () {
+        var that = $(this),
+                id = that.data('id');
         var form = $('#delete-form'),
-         name = that.data('name'),
-         route = form.data('route');
+                name = that.data('name'),
+                route = form.data('route');
         form.attr('action', route + '/' + id);
-        $('#confirmModal .modal-body').text('Are you sure that you want to delete '  + name);
+        $('#confirmModal .modal-body').text('Are you sure that you want to delete ' + name);
     });
 });
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
+    var timeout;
+    return function () {
+        var context = this, args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate)
+                func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow)
+            func.apply(context, args);
+    };
+}
+;

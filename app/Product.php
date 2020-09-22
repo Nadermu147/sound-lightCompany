@@ -71,4 +71,12 @@ class Product extends Model {
         Storage::disk('public')->delete($product->image);
         self::destroy($id); 
     }
+    
+    public static function getProductByprice($cat, $pro){
+       $min_price = Input::has('min_price') ? Input::get('min_price') : null;
+       $max_price = Input::has('max_price') ? Input::get('max_price') : null;        if(isset($min_price) && isset($max_price)){
+            $product->where('price', '>=', $min_price)->
+                    where('price' ,$max_price);        }
+        $product->get();
+    }
 }

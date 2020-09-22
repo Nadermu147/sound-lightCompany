@@ -30,7 +30,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('about')}}">About</a>
                             </li>
-                            
+
                               @unless( $pages->isEmpty())
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,23 +39,30 @@
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @foreach($pages as $page)
-                                    <a class="dropdown-item" href="{{url($page->slug)}}">{{($page->name)}}</a> 
+                                    <a class="dropdown-item" href="{{url($page->slug)}}">{{($page->name)}}</a>
                                       @endforeach
                                 </div>
-                              
+
                             </li>
                             @endunless
-                            
-                          
-                            
-                            
-                            
-                            
+
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('shop')}}">Shop</a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav ml-auto"> 
+
+                        <form class="form-inline md-form mr-auto "action="search" method="GET" role="search">
+                            {{ csrf_field() }}
+                            <div class="input-group">
+                                <input class="form-control mr-sm-2" id="searchPro" type="text" class="form-control" name="q"
+                                    placeholder="Search itmes"> <span class="input-group-btn">
+                                        <button class="btn btn-outline-warning btn-rounded btn-sm my-0" type="submit">Search</button>
+                                </span>
+                            </div>
+                        </form>
+
+                        <ul class="navbar-nav ml-auto">
                             @if(session('id'))
                             @if(session('role')===17)
                             <li class="nav-item">
@@ -85,7 +92,13 @@
                         </div>
                     </div>
                 </div>
+
             </nav>
+
+
+
+
+
         </header>
 
         <main>
@@ -121,9 +134,10 @@
             <div class="container text-center p-5">  @Develpoer by Nader Muhesen 2020</div>
 
         </footer>
+<!--       -->
 <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
-						
+
         <script src="{{asset("js/jquery-3.5.1.min.js")}}"></script>
         <script src="{{asset("js/scripts.js")}}"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
