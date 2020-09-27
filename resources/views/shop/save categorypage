@@ -1,31 +1,27 @@
 @extends('template')
-
 @section('content')
 
 
 <h1 class="mb-5">{{strtoupper($category->name)}}</h1>
 @if($category->products->isEmpty())
-<h3>We don't have product to Show ,press <a href="{{url('shop')}}">shop</a> to start shop. </h3>
+<h3>We don't have product to Show</h3>
 @else
-<div class="searchbtndiv">
-<button type="button" class="btn btn-warning searchbtn"><a href="{{ url()->current().'/?sort=DESC'}}" style="color:black"> High to low</a></button>
-<button type="button" class="btn btn-warning searchbtn"><a href="{{ url()->current().'/?sort=ASC' }}" style="color:black">Low to high</a>
-</button>
-</div>
+<a href="{{ url()->current().'/?sort=DESC'}}" style="color:black"> High to low</a>
+<a href="{{ url()->current().'/?sort=ASC' }}" style="color:black">Low to high</a>
 
 @endif
 <?php
 if(!isset($_GET['sort'])){
-    $_GET['sort'] = "ASC";
+    $_GET['sort'] = "DESC";
+}else{
+$_GET['sort'] == "DESC" ? $g1 = $category->products->sortByDesc('price') : $category->products;
+
 }
-$_GET['sort'] == "ASC" ? $products = $category->products->sortBy('price') : $products = $category->products;
-
-
 ?>
 
 <div class="row">
 
-    @foreach($products as $product)
+    @foreach($category->products as $product)
 
     <div class="col-md-4 mb-5">
         <div class="pro-container">

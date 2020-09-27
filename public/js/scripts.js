@@ -57,8 +57,8 @@ $(function () {
 
         e.preventDefault();
         var that = $(this),
-                url = that.attr('action'),
-                data = that.serialize();
+            url = that.attr('action'),
+            data = that.serialize();
         $.post(url, data, function (response) {
 
 
@@ -103,9 +103,9 @@ $(function () {
 
     $('.product-quantity').on('change', debounce(function () {
         var that = $(this),
-                parent = that.parents('.update-cart'),
-                url = parent.attr('action'),
-                data = parent.serialize();
+            parent = that.parents('.update-cart'),
+            url = parent.attr('action'),
+            data = parent.serialize();
 
         $.post(url, data, function (response) {
             // JSON.parse(response);
@@ -140,28 +140,79 @@ $(function () {
 
     $('.open-modal').on('click', function () {
         var that = $(this),
-                id = that.data('id');
+            id = that.data('id');
         var form = $('#delete-form'),
-                name = that.data('name'),
-                route = form.data('route');
+            name = that.data('name'),
+            route = form.data('route');
         form.attr('action', route + '/' + id);
         $('#confirmModal .modal-body').text('Are you sure that you want to delete ' + name);
     });
-});
-function debounce(func, wait, immediate) {
-    var timeout;
-    return function () {
-        var context = this, args = arguments;
-        var later = function () {
-            timeout = null;
-            if (!immediate)
+
+    /*  $('body').on('keyup', '#serachpro', function () {
+         var searchPro = $(this).val()
+         console.log(searchPro);
+         $.ajax({
+             method: 'post',
+             url: "{{route('autocomplete')}}",
+             data: {
+                 '_token': '{{ csrf_token() }}',
+                 searchPro: searchPro,
+
+                 success: function (res) {
+                     console.log(res);
+                 }
+             }
+
+
+         }); */
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('body').on('keyup', '#searchp', function () {
+        var searchPro = $("#serachpro").val();
+        console.log(searchPro);
+        $.ajax({
+            type: "POST",
+            url: "autocomplete",
+            data: {searchPro:searchPro} ,
+
+            success: function (res) {
+                console.log(res);
+                $('#list-search').html(res);
+            }
+        });
+       $(document).on('click', 'li', function(){
+            // declare the value in the input field to a variable
+            var value = $(this).text();
+            console.log(value);
+            // assign the value to the search box
+            $('#searchp').val('value');
+            // after click is done, search results segment is made empty
+            $('#list-search').html("");
+        });
+        /*  $.post('autocomplete', {searchPro : searchPro}, function (data) {
+             console.log(data);
+             $("#printsearc").html(data);
+         }); */
+    })
+
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate)
+                    func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow)
                 func.apply(context, args);
         };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow)
-            func.apply(context, args);
-    };
-}
-;
+    }
+});

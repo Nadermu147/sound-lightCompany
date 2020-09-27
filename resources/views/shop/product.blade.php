@@ -1,6 +1,7 @@
 @extends('template')
 @section('content')
 
+
 <div class="row">
     <div class="col-md-7">
         <h1>{{strtoupper($product->name)}}</h1>
@@ -9,9 +10,7 @@
         <p>only for:&#8362; {{$product->price}}</p>
         <form id="add-to-cart" method="post" action="{{url('add-to-cart')}}">
             @csrf
-            <h1>
-                test
-            </h1>
+
             <div class="number">
                 <span class="minus">-</span>
                 <input name="quantity" type="text" value="1" readonly>

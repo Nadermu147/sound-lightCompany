@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\order;
+use Gloudemans\Shoppingcart\Cart;
 
 class CartController extends Controller {
 
@@ -34,13 +35,13 @@ class CartController extends Controller {
     public function updateCart(Request $request) {
         \Cart::update($request->rowId, $request->quantity);
          $data = [
-          
+
              'cart_count' => \Cart::count(),
              'cart_total' => \Cart::total(0),
              'product_total' => \Cart::get($request->rowId)->total(0),
-              
+
          ];
-       
+
         return json_encode($data);
     }
 /////////////////////////////////////////
@@ -60,7 +61,7 @@ class CartController extends Controller {
                return redirect ('shop')->with('status', 'Thank for shopping your product on thie way');
             }
                 return redirect('cart');
-            
+
           }
           session(['place-order-process'=>true]);
            return redirect('login')->with('status', 'To complate your order need to be logged in  . Not registration yet?

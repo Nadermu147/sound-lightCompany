@@ -1,6 +1,8 @@
 
 <?php
 
+use App\Http\Controllers\SearchProduct;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use App\Product;
 use App\User;
@@ -61,31 +63,19 @@ Route::resource('admin/categories', 'CategryCrudController')->middleware('valida
 Route::resource('admin/products', 'ProductCrudControllar')->middleware('validate_admin');
 Route::resource('admin/users', 'UserCrudController')->middleware('validate_admin');
 Route::resource('admin/pages', 'PageCrudController')->middleware('validate_admin');
-Route::get('shop/searchproduct',' SearchProduct@SearchPro');
+
 //search product
 
 
-Route::any('/search',function(){
-    $q = Request::get ( 'q' );
-
-    if ($q) {
-    $product = Product::where('name','LIKE','%'.$q.'%')->orWhere('slug','LIKE','%'.$q.'%')->get();
-    if(count($product) > 0){
-        return view('shop/searchproduct')->withDetails($product)->withQuery ( $q );
+Route::get('/search','ShopController@SearchProduct')->name("search");
 
 
-    }
-    else {
+Route::post('/autocomplete', 'ShopController@autoComplete')->name('autocomplete');
 
-        return redirect('shop')->with('status', 'We don\'t have product to show');
-    }
-}  else {
+//search page
 
-    return redirect('shop')->with('status', '');
-}
-});
 
-Route::get('shop/searchproduct','SearchControllar@searchCategory');
+
 
 //should be the last rout
 Route::get('{slug}', 'PageController@displayPage');
